@@ -1,8 +1,39 @@
-package main
+package slice
 
 import "fmt"
 
-func main() {
+type ByteSlice []byte
+func (p *ByteSlice) Append(data []byte) {
+	slice := append(*p, data...)
+	*p = slice
+}
+
+func PrintNil() {
+	a := [2]int{1,2}
+	a2 := [2]int{1,2}
+	fmt.Println(a == a2)
+	// 切片不能通过 == 比较
+	//s := make([]int8, 4)
+	//s2 := make([]int8, 4)
+	//fmt.Println(s == s2)
+
+	var s []int
+	fmt.Printf("s is %v, cap is %d, len is %d \n", s, cap(s), len(s))
+}
+
+// LinesOfText 包含多个字节切片的一个切片。
+type LinesOfText [][]byte
+
+func PrintLines() {
+	text := LinesOfText{
+		[]byte("Now is the time"),
+		[]byte("for all good gophers"),
+		[]byte("to bring some fun to the party."),
+	}
+	fmt.Printf("%v \n", text)
+}
+
+func ExSlice() {
 	arr := [2]int{1,2}
 	printArr(arr)
 
@@ -20,7 +51,7 @@ func main() {
 
 	var s []int
 	if s == nil {
-		 println("slice default value is nil")
+		println("slice default value is nil")
 	}
 	println(s)
 

@@ -2,9 +2,45 @@ package main
 
 import (
 	"fmt"
+	"os"
 )
+type T struct {
+	a int
+	b float64
+	c string
+}
+
+func Min(a ...int) int {
+	min := int(^uint(0) >> 1)  // 最大的 int
+	for _, i := range a {
+		if i < min {
+			min = i
+		}
+	}
+	return min
+}
 
 func main() {
+	Min(1,2,3,4)
+	s := []int {1,2,3,4}
+	Min(s...)
+
+
+	t := &T{ 7, -2.35, "abc\tdef" }
+	fmt.Printf("%v\n", t)
+	fmt.Printf("%+v\n", t)
+	fmt.Printf("%#v\n", t)
+	println()
+
+
+	fmt.Printf("Hello %d\n", 23)
+	fmt.Fprint(os.Stdout, "Hello ", 23, "\n")
+	fmt.Println("Hello", 23)
+	fmt.Println(fmt.Sprint("Hello ", 23))
+
+	fmt.Print(23,21)
+
+	println()
 	str2 := "Hello World"
 	fmt.Printf("%#x \n",[]byte(str2))
 
